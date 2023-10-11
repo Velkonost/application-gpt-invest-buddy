@@ -1,0 +1,104 @@
+package com.investbuddy.features.exchange.data
+
+import android.util.Log
+import com.investbuddy.App
+import com.investbuddy.features.exchange.data.mapper.CryptoDataMapper
+import com.investbuddy.features.exchange.data.mapper.CurrencyDataMapper
+import com.investbuddy.features.exchange.data.mapper.StockDataMapper
+import com.investbuddy.features.exchange.domain.model.ExchangeItem
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import javax.inject.Inject
+
+
+class ExchangeRepository @Inject constructor(
+    private val exchangeApi: ExchangeApi
+) {
+
+    suspend fun getCrypto(): List<ExchangeItem> {
+        val locale: String = App.resource.configuration.locale.country
+        val currencyData = exchangeApi.getCurrency(
+            url = "https://restcountries.com/v3.1/alpha/${locale}"
+        )
+
+        var currency = currencyData.currencies.keys.first()
+        val availableCurrencies = listOf(
+            "AUD", "BGN", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HRK",
+            "HUF", "IDR", "ILS", "INR", "ISK", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP",
+            "PLN", "RON", "RUB", "SEK", "SGD", "THB", "TRY", "USD", "ZAR"
+        )
+
+        if (availableCurrencies.contains(currency).not()) {
+            currency = "USD"
+        }
+
+        val cryptoData = exchangeApi.getCrypto(currency = currency.lowercase())
+
+        return CryptoDataMapper.mapFromDataToDomain(cryptoData)
+    }
+
+    suspend fun getStock(mult: Float): List<ExchangeItem> {
+        val stockData = exchangeApi.getStock2()
+
+        return StockDataMapper.mapFromDataToDomain(stockData, mult)
+    }
+
+    suspend fun getCurrency(): List<ExchangeItem> {
+        val locale: String = App.resource.configuration.locale.country
+
+        val currencyData = exchangeApi.getCurrency(
+            url = "https://restcountries.com/v3.1/alpha/${locale}"
+        )
+
+        var currency = currencyData.currencies.keys.first()
+        val availableCurrencies = listOf(
+            "AUD", "BGN", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HRK",
+            "HUF", "IDR", "ILS", "INR", "ISK", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP",
+            "PLN", "RON", "RUB", "SEK", "SGD", "THB", "TRY", "USD", "ZAR"
+        )
+
+        if (availableCurrencies.contains(currency).not()) {
+            currency = "USD"
+        }
+
+        val dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val cal: Calendar = Calendar.getInstance()
+        cal.add(Calendar.DATE, -1)
+        val dateTo = dateFormat.format(cal.time)
+
+        cal.add(Calendar.DATE, -1)
+        val dateFrom = dateFormat.format(cal.time)
+
+        val ratesData = exchangeApi.getCurrencyRates(
+            dateFrom = dateFrom,
+            dateTo = dateTo,
+            baseCurrency = currency
+        )
+
+        return CurrencyDataMapper.mapFromDataToDomain(ratesData.data, currency)
+    }
+
+    suspend fun getCurrencySymbol(): Pair<String, String> {
+        val locale: String = App.resource.configuration.locale.country
+
+        val currencyData = exchangeApi.getCurrency(
+            url = "https://restcountries.com/v3.1/alpha/${locale}"
+        )
+
+        var currency = currencyData.currencies.keys.first()
+        var currencySymbol = currencyData.currencies[currency]?.symbol
+        val availableCurrencies = listOf(
+            "AUD", "BGN", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HRK",
+            "HUF", "IDR", "ILS", "INR", "ISK", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP",
+            "PLN", "RON", "RUB", "SEK", "SGD", "THB", "TRY", "USD", "ZAR"
+        )
+
+        if (availableCurrencies.contains(currency).not()) {
+            currency = "USD"
+            currencySymbol = "$"
+        }
+
+        return Pair(currency, currencySymbol?: currency)
+    }
+}

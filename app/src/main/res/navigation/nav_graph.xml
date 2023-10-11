@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+
+    <!--    Чтобы скинуть навигацию до начального экрана нужно добавить атрибуты к экшену, например-->
+    <!--    <action-->
+    <!--        android:id="@+id/action_profileFragment_to_authTypeFragment"-->
+    <!--        app:destination="@id/authTypeFragment"-->
+    <!--        app:popUpTo="@+id/nav_graph"-->
+    <!--        app:popUpToInclusive="true" />-->
+
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.investbuddy.features.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_chatFragment"
+            app:destination="@id/chatFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.investbuddy.features.adviser.ui.AdviserFragment"
+        android:label="AdviserFragment"
+        tools:layout="@layout/fragment_adviser">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.investbuddy.features.investplan.ui.InvestPlanFragment"
+        android:label="InvestPlanFragment"
+        tools:layout="@layout/fragment_invest_plan">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/exchangeFragment"
+        android:name="com.investbuddy.features.exchange.ui.ExchangeFragment"
+        android:label="ExchangeFragment"
+        tools:layout="@layout/fragment_exchange">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.investbuddy.features.settings.ui.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings">
+
+        <action
+            android:id="@+id/action_settingsFragment_to_termsFragment"
+            app:destination="@id/termsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/termsFragment"
+        android:name="com.investbuddy.features.settings.ui.TermsFragment"
+        android:label="TermsFragment"
+        tools:layout="@layout/fragment_terms">
+
+    </fragment>
+
+</navigation>

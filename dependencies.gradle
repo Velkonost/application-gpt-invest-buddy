@@ -1,0 +1,99 @@
+ext.deps = [:]
+
+def versions = [:]
+
+versions.kotlin = "1.8.10"
+versions.coroutines = "1.6.1"
+
+versions.core_ktx = "1.9.0"
+versions.appcompat = "1.6.1"
+versions.constraintlayout = "2.1.4"
+versions.viewpager2 = "1.0.0"
+versions.lifecycle = "2.5.1"
+versions.fragment_ktx = "1.5.5"
+versions.navigation = "2.5.3"
+
+versions.material = "1.8.0"
+
+versions.glide = "4.12.0"
+versions.pinview = "1.4.4"
+versions.circleindicator = "2.1.6"
+versions.viewbindingpropertydelegate = "1.5.8"
+
+versions.dagger_hilt = "2.44"
+
+versions.retrofit = "2.9.0"
+versions.okhttp = "4.10.0"
+versions.kotlinx_serialization = "1.4.1"
+versions.kotlinx_serialization_converter = "0.8.0"
+versions.logging_interceptor = "4.10.0"
+
+versions.simple_ratingbar = "1.5.1"
+
+versions.epoxy = "3.1.0"
+
+versions.calendar = "2.0.1"
+versions.blurview = "2.0.3"
+versions.eventbus = "3.1.1"
+
+versions.room = "2.3.0"
+versions.lottie = "4.2.0"
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+kotlin.coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines"
+kotlin.coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+deps.kotlin = kotlin
+
+def androidx = [:]
+androidx.core_ktx = "androidx.core:core-ktx:$versions.core_ktx"
+androidx.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
+androidx.constraintlayout = "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
+androidx.viewpager2 = "androidx.viewpager2:viewpager2:$versions.viewpager2"
+androidx.lifecycle_vm = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+androidx.lifecycle_livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
+androidx.fragment_ktx = "androidx.fragment:fragment-ktx:$versions.fragment_ktx"
+androidx.navigation_ui = "androidx.navigation:navigation-ui-ktx:$versions.navigation"
+androidx.navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+deps.androidx = androidx
+
+def material = [:]
+material.material = "com.google.android.material:material:$versions.material"
+deps.material = material
+
+def other = [:]
+other.glide = "com.github.bumptech.glide:glide:$versions.glide"
+other.pinview = "io.github.chaosleung:pinview:$versions.pinview"
+other.circleindicator = "me.relex:circleindicator:$versions.circleindicator"
+other.viewbindingpropertydelegate = "com.github.kirich1409:viewbindingpropertydelegate-noreflection:$versions.viewbindingpropertydelegate"
+other.simple_ratingbar = "com.github.ome450901:SimpleRatingBar:$versions.simple_ratingbar"
+other.calendar = "com.github.prolificinteractive:material-calendarview:$versions.calendar"
+other.blurview = "com.github.Dimezis:BlurView:version-$versions.blurview"
+other.eventbus = "org.greenrobot:eventbus:$versions.eventbus"
+other.lottie = "com.airbnb.android:lottie:$versions.lottie"
+deps.other = other
+
+def dagger_hilt = [:]
+dagger_hilt.hilt = "com.google.dagger:hilt-android:$versions.dagger_hilt"
+dagger_hilt.hilt_kapt = "com.google.dagger:hilt-compiler:$versions.dagger_hilt"
+deps.dagger_hilt = dagger_hilt
+
+def network = [:]
+network.retrofit = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+network.jackson = "com.squareup.retrofit2:converter-jackson:$versions.retrofit"
+network.okhttp = "com.squareup.okhttp3:okhttp:$versions.okhttp"
+network.kotlinx_serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:$versions.kotlinx_serialization"
+network.kotlinx_serialization_converter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$versions.kotlinx_serialization_converter"
+network.logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.logging_interceptor"
+deps.network = network
+
+def epoxy = [:]
+epoxy.adapter = "com.airbnb.android:epoxy:$versions.epoxy"
+epoxy.processor = "com.airbnb.android:epoxy-processor:$versions.epoxy"
+epoxy.paging = "com.airbnb.android:epoxy-paging:$versions.epoxy"
+deps.epoxy = epoxy
+
+def room = [:]
+room.room = "androidx.room:room-runtime:$versions.room"
+room.compiler = "androidx.room:room-compiler:$versions.room"
+deps.room = room

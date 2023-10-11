@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomSheetContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:saveEnabled="false"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    tools:visibility="visible">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0F487C"
+        app:cardElevation="30dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="August, 17"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/icClose"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp"
+                android:adjustViewBounds="true"
+                android:alpha="0.5"
+                android:padding="6dp"
+                android:src="@drawable/ic_close"
+                app:layout_constraintBottom_toBottomOf="@id/date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/date" />
+
+            <EditText
+                android:id="@+id/type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_edit_chat"
+                android:clickable="true"
+                android:focusable="false"
+                android:fontFamily="@font/montserrat_regular"
+                android:textStyle="bold"
+                android:hint="@string/invest_type_hint"
+                android:paddingVertical="15dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="40dp"
+                android:textColor="@color/white"
+                android:textColorHint="#80FFFFFF"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/date" />
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginEnd="16dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_calendar_month_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/type"
+                app:layout_constraintEnd_toEndOf="@id/type"
+                app:layout_constraintTop_toTopOf="@id/type" />
+
+            <EditText
+                android:id="@+id/currency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_edit_chat"
+                android:clickable="false"
+                android:textStyle="bold"
+                android:focusable="false"
+                android:fontFamily="@font/montserrat_regular"
+                android:hint="@string/invest_currency_hint"
+                android:paddingVertical="15dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="40dp"
+                android:textColor="@color/white"
+                android:textColorHint="#80FFFFFF"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/type" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_calendar_month_arrow"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/currency"
+                app:layout_constraintEnd_toEndOf="@id/currency"
+                app:layout_constraintTop_toTopOf="@id/currency" />
+
+            <EditText
+                android:id="@+id/amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_edit_chat"
+                android:fontFamily="@font/montserrat_regular"
+                android:hint="@string/invest_amount_hint"
+                android:imeOptions="actionDone"
+                android:textStyle="bold"
+                android:inputType="number"
+                android:digits="1234567890.,"
+                android:maxLength="12"
+                android:lines="1"
+                android:paddingVertical="15dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="40dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="#80FFFFFF"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/currency" />
+
+            <TextView
+                android:id="@+id/addBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_add_invest_btn_disabled"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:paddingVertical="15dp"
+                android:text="@string/add_day_to_invest_plan_btn"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/amount" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

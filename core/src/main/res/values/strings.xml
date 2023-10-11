@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu_adviser">Adviser</string>
+    <string name="menu_invest_plan">Invest plan</string>
+    <string name="menu_exchange">Exchange</string>
+    <string name="menu_settings">Settings</string>
+
+
+</resources>

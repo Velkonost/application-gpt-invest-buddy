@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--    We need to make sure the ID of menu item matches with ID of fragment in graph.-->
+
+    <item
+        android:id="@+id/chatFragment"
+        android:icon="@drawable/ic_adviser"
+        android:title="@string/menu_adviser" />
+
+    <item
+        android:id="@+id/calendarFragment"
+        android:icon="@drawable/ic_invest_plan"
+        android:title="@string/menu_invest_plan" />
+
+    <item
+        android:id="@+id/exchangeFragment"
+        android:icon="@drawable/ic_exchange"
+        android:title="@string/menu_exchange" />
+
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/menu_settings" />
+</menu>

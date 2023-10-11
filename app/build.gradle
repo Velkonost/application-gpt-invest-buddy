@@ -1,0 +1,124 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.10'
+    id 'kotlin-parcelize'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
+
+apply from: rootProject.file('dependencies.gradle')
+
+android {
+    namespace 'com.investbuddy'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.apps.invest.buddy"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0.0"
+        viewBinding.enabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        stage {
+            versionNameSuffix "-stage"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            versionNameSuffix "-debug"
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    android.applicationVariants.configureEach { variant ->
+        variant.outputs.configureEach {
+            def appName = "InvestBuddy"
+            outputFileName = appName + ".apk"
+        }
+    }
+
+    kapt {
+        correctErrorTypes true
+    }
+}
+
+dependencies {
+
+    implementation(
+            project(":core"),
+            
+            deps.androidx.core_ktx,
+            deps.androidx.appcompat,
+            deps.androidx.constraintlayout,
+            deps.androidx.viewpager2,
+            deps.androidx.fragment_ktx,
+            deps.androidx.navigation_ui,
+            deps.androidx.navigation_fragment_ktx,
+
+            deps.kotlin.coroutines,
+            deps.kotlin.coroutines_android,
+
+            deps.material.material,
+
+            deps.other.glide,
+            deps.other.pinview,
+            deps.other.viewbindingpropertydelegate,
+            deps.other.simple_ratingbar,
+
+            deps.dagger_hilt.hilt,
+
+            deps.network.retrofit,
+            deps.network.jackson,
+            deps.network.okhttp,
+            deps.network.kotlinx_serialization,
+            deps.network.kotlinx_serialization_converter,
+            deps.network.logging_interceptor,
+
+            deps.epoxy.adapter,
+            deps.epoxy.processor,
+            deps.epoxy.paging,
+
+            deps.other.calendar,
+            deps.other.blurview,
+            deps.other.eventbus,
+            deps.other.lottie,
+
+            deps.room.room,
+    )
+    implementation(platform("com.google.firebase:firebase-bom:32.2.3"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.2.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.7.1'
+    implementation 'com.android.installreferrer:installreferrer:2.2'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+
+    //rx java
+    implementation "io.reactivex.rxjava2:rxjava:2.2.10"
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
+    implementation "androidx.paging:paging-rxjava2:2.1.2"
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+
+    kapt(
+            deps.dagger_hilt.hilt_kapt,
+            deps.room.compiler
+    )
+
+    kapt "org.xerial:sqlite-jdbc:3.36.0" // Only for computer with M1 CPU
+    implementation group: 'org.threeten', name: 'threetenbp', version: '1.5.2', classifier: 'no-tzdb'
+}

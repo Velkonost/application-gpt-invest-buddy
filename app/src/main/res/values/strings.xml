@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">InvestBuddy</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_other">Other</string>
+    <string name="title_privacy_policy">Privacy Policy</string>
+    <string name="title_terms_of_use">Terms of Use</string>
+    <string name="title_share_app">Share app</string>
+
+    <string name="exchange_crypto">Crypto</string>
+    <string name="exchange_currency">Currency</string>
+    <string name="exchange_stock">Stock</string>
+    <string name="invest_plan_warning_text">Click on a day to add investments amount</string>
+    <string name="invest_type_hint">Invest type</string>
+    <string name="invest_currency_hint">Invest currency</string>
+    <string name="invest_amount_hint">Invest amount</string>
+    <string name="add_day_to_invest_plan_btn">Add day to invest plan</string>
+</resources>

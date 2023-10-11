@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#04294B</color>
+    <color name="green">#21BF72</color>
+    <color name="gray">#80FFFFFF</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="blue">#0496FD</color>
+
+    <color name="nav_view_bg">#80181D49</color>
+    <color name="nav_bar_bg">#0e2246</color>
+
+</resources>

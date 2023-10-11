@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "781560464342",
+    "project_id": "invest-7a9f8",
+    "storage_bucket": "invest-7a9f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:781560464342:android:b6cca387a29cc292691a77",
+        "android_client_info": {
+          "package_name": "com.apps.invest.buddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "781560464342-v07o5vvgok0tfmn3lpeoqq9v6mlnp7r3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_3KmO_S4olycK9G7DUF5Lgy9mpcKIbOE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "781560464342-v07o5vvgok0tfmn3lpeoqq9v6mlnp7r3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

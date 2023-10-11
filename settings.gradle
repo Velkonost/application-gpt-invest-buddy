@@ -1,0 +1,19 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        // добавлено для библиотеки SimpleRatingBar
+        maven { url "https://jitpack.io" }
+    }
+}
+rootProject.name = "InvestBuddy"
+include ':app'
+include ':core'
