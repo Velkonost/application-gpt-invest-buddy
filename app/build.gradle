@@ -24,6 +24,8 @@ android {
         viewBinding.enabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "AES", "\"APM1JDVgT8WDGOWBgQv6EIhvxl4vDYvUnVdg-Vjdt0o=\""
     }
 
     buildTypes {

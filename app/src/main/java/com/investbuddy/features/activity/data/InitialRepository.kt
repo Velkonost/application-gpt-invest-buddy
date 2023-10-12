@@ -1,9 +1,12 @@
 package com.investbuddy.features.activity.data
 
+import android.util.Log
 import com.investbuddy.App
 import com.investbuddy.common.data.AppSharedPreferences
 import com.investbuddy.common.data.SharedPrefsKeys
 import com.investbuddy.common.data.UserSharedPreferences
+import com.investbuddy.common.decoder.DecoderDelegate
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 /**
@@ -15,13 +18,15 @@ class InitialRepository @Inject constructor(
 ) {
 
     suspend fun updateInfo() {
-        val data = initialApi.getInfo().first()
+        runBlocking {
+            val data = initialApi.getInfo().first()
 
-        appSharedPreferences.setString(SharedPrefsKeys.TEXT_POLITIC, data.text_politic)
-        appSharedPreferences.setString(SharedPrefsKeys.KEY, data.key_chat)
-        appSharedPreferences.setString(SharedPrefsKeys.TEXT_TERM, data.text_term)
-        appSharedPreferences.setString(SharedPrefsKeys.TRADE, data.trade)
-        appSharedPreferences.setString(SharedPrefsKeys.BOT_MODEL, data.bot)
+            appSharedPreferences.setString(SharedPrefsKeys.TEXT_POLITIC, data.text_politic)
+            appSharedPreferences.setString(SharedPrefsKeys.KEY, data.key_chat)
+            appSharedPreferences.setString(SharedPrefsKeys.TEXT_TERM, data.text_term)
+            appSharedPreferences.setString(SharedPrefsKeys.TRADE, data.trade)
+            appSharedPreferences.setString(SharedPrefsKeys.BOT_MODEL, data.bot)
+        }
     }
 
     suspend fun updatePrompt(): String {

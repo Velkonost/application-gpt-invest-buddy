@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.investbuddy.R
+import com.investbuddy.common.decoder.DecoderDelegate
 import com.investbuddy.common.di.IOnBackPressed
 import com.investbuddy.common.event.ChangeNavViewVisibilityEvent
 import com.investbuddy.core.base.mvvm.ViewCommand
@@ -61,8 +62,6 @@ class InitialActivity : AppCompatActivity() {
         }
 
         EventBus.getDefault().register(this)
-
-
     }
 
     private fun initViews() {

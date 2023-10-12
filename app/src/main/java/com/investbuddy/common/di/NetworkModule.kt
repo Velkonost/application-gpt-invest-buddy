@@ -4,6 +4,7 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import com.investbuddy.BuildConfig
 import com.investbuddy.common.data.AppSharedPreferences
 import com.investbuddy.common.data.SharedPrefsKeys
+import com.investbuddy.common.decoder.DecoderDelegate
 import com.investbuddy.common.network.Authenticator
 import com.investbuddy.common.network.interceptor.AuthInterceptor
 import com.investbuddy.common.network.interceptor.ServerErrorInterceptor
@@ -28,7 +29,7 @@ import java.util.concurrent.TimeUnit
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val CONNECTION_TIMEOUT_S = 10L
+    private const val CONNECTION_TIMEOUT_S = 20L
     private const val CONNECTION_TIMEOUT_CHAT_S = 120L
 
     @Provides
@@ -112,8 +113,13 @@ object NetworkModule {
             .addInterceptor(logInter)
             .addInterceptor(errorInterceptor)
             .addInterceptor {
+                val key = appSharedPreferences.getString(SharedPrefsKeys.KEY)?.let { it1 ->
+                    DecoderDelegate().decrypt(
+                        it1
+                    ).decodeToString()
+                }
                 val newRequest = it.request().newBuilder()
-                    .addHeader("Authorization", "Bearer ${appSharedPreferences.getString(SharedPrefsKeys.KEY)}")
+                    .addHeader("Authorization", "Bearer $key")
                     .build()
 
                 it.proceed(newRequest)
