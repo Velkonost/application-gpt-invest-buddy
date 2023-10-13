@@ -16,9 +16,10 @@ class AdviserViewModel @Inject constructor(
     private val initialRepository: InitialRepository
 ) : BaseViewModel<AdviserViewState>(AdviserViewState()) {
 
+    private var isTriedContinue = false
+
     init {
         getData()
-
     }
 
     private fun getData() {
@@ -49,6 +50,9 @@ class AdviserViewModel @Inject constructor(
 
                 if (items.isEmpty()) {
                     getStartPrompt()
+                } else if (items.last().role != Roles.ASSISTANT.title && !isTriedContinue) {
+                    continueChat()
+                    isTriedContinue = true
                 }
             },
             onError = {
@@ -79,6 +83,25 @@ class AdviserViewModel @Inject constructor(
             launchBlock = {
                 switchLoading(true)
                 repository.sendStartPrompt(prompt)
+            },
+            onSuccess = {
+                switchLoading(false)
+                getMessages()
+            },
+            onError = {
+                switchLoading(false)
+                _viewState.update { state ->
+                    state.copy(isAvailable = false)
+                }
+            }
+        )
+    }
+
+    private fun continueChat() {
+        viewModelScope.safeLaunch(
+            launchBlock = {
+                getMessages(showLoadingAfter = true)
+                repository.sendMessage()
             },
             onSuccess = {
                 switchLoading(false)
