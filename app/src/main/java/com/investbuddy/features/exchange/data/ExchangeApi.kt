@@ -43,8 +43,8 @@ interface ExchangeApi {
 
     @GET
     suspend fun getCurrencyRates(
-        @Url url: String = "https://api.freecurrencyapi.com/v1/historical",
-        @Query("apikey") apiKey: String = "obUCx5TkqFIsN7ztkxgzLsMlyKO5PQwUzzfr2uBl",
+        @Url url: String = "https://api.currencyapi.com/v3/latest",
+        @Query("apikey") apiKey: String = "cur_live_0GBNWoa4U6fqc6Cv5xf9AC3tFRwDeOHfAwG73eMO",
         @Query("currencies") currencies: String = "",
         @Query("base_currency") baseCurrency: String,
         @Query("date_from") dateFrom: String,

@@ -73,7 +73,8 @@ class ExchangeRepository @Inject constructor(
         val ratesData = exchangeApi.getCurrencyRates(
             dateFrom = dateFrom,
             dateTo = dateTo,
-            baseCurrency = currency
+            baseCurrency = currency,
+            currencies = "EUR,USD,BRL,PLN,JPY,CAD,TRY,AUD,CHF,RUB"
         )
 
         return CurrencyDataMapper.mapFromDataToDomain(ratesData.data, currency)
