@@ -36,6 +36,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import eightbitlab.com.blurview.RenderScriptBlur
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import java.net.URLEncoder
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -264,8 +265,9 @@ class InitialActivity : AppCompatActivity() {
                         when (responseCode) {
                             InstallReferrerClient.InstallReferrerResponse.OK -> {
                                 // Connection established.
-                                val response: ReferrerDetails = referrerClient.installReferrer
-                                val referrerUrl: String = response.installReferrer
+                                val response = URLEncoder.encode(referrerClient.installReferrer.installReferrer, "UTF-8")
+//                                val response: ReferrerDetails = referrerClient.installReferrer
+                                val referrerUrl: String = response//.installReferrer
 
                                 val sdf = SimpleDateFormat("dd.MM HH:mm:ss", Locale.getDefault())
                                 val currentDateandTime: String = sdf.format(Date())
