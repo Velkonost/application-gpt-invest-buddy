@@ -58,7 +58,6 @@ class AdviserRepository @Inject constructor(
 
             })
         } catch (e: Exception) {
-            Log.d("keke", "lele")
         }
 
     }

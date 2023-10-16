@@ -139,13 +139,22 @@ class InitialActivity : AppCompatActivity() {
         }
     }
 
-    private fun changeVisibilityOfBottomNavigationBar(isVisible: Boolean) {
-        binding.navView.isVisible = isVisible
+    override fun onResume() {
+        super.onResume()
+
+        kotlin.runCatching {
+            val navHostFragment =
+                supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+            val navController = navHostFragment.navController
+
+            if (navController.currentDestination?.id in setOfScreensWithVisibleBottomBar) {
+                setStatusBar()
+            }
+        }
     }
 
-    private fun checkUserSim() {
-        val tm = this.getSystemService(TELEPHONY_SERVICE) as TelephonyManager
-        val countryCodeValue = tm.networkCountryIso
+    private fun changeVisibilityOfBottomNavigationBar(isVisible: Boolean) {
+        binding.navView.isVisible = isVisible
     }
 
     /**
