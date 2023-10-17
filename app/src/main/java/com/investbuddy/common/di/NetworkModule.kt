@@ -38,7 +38,7 @@ object NetworkModule {
         appSharedPreferences: AppSharedPreferences,
     ): Retrofit {
         val logInter = HttpLoggingInterceptor()
-        logInter.setLevel(HttpLoggingInterceptor.Level.BODY);
+        logInter.setLevel(HttpLoggingInterceptor.Level.NONE);
 
         val okhttp = OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT_S, TimeUnit.SECONDS)
@@ -75,7 +75,7 @@ object NetworkModule {
         appSharedPreferences: AppSharedPreferences,
     ): Retrofit {
         val logInter = HttpLoggingInterceptor()
-        logInter.setLevel(HttpLoggingInterceptor.Level.BODY)
+        logInter.setLevel(HttpLoggingInterceptor.Level.NONE)
 
         val okhttp = OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT_S, TimeUnit.SECONDS)
@@ -105,7 +105,7 @@ object NetworkModule {
         appSharedPreferences: AppSharedPreferences,
     ): Retrofit {
         val logInter = HttpLoggingInterceptor()
-        logInter.setLevel(HttpLoggingInterceptor.Level.BASIC);
+        logInter.setLevel(HttpLoggingInterceptor.Level.NONE);
 
         val okhttp = OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT_CHAT_S, TimeUnit.SECONDS)
