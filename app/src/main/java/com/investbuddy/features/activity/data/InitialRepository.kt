@@ -26,6 +26,10 @@ class InitialRepository @Inject constructor(
             appSharedPreferences.setString(SharedPrefsKeys.TEXT_TERM, data.text_term)
             appSharedPreferences.setString(SharedPrefsKeys.TRADE, data.trade)
             appSharedPreferences.setString(SharedPrefsKeys.BOT_MODEL, data.bot)
+
+            appSharedPreferences.setString(SharedPrefsKeys.KEY_RAPID_API, data.X_RapidAPI_Key)
+            appSharedPreferences.setString(SharedPrefsKeys.KEY_API, data.x_api_key)
+            appSharedPreferences.setString(SharedPrefsKeys.KEY_CURRENCY, data.currency_rates)
         }
     }
 

@@ -2,6 +2,8 @@ package com.investbuddy.features.exchange.data
 
 import android.util.Log
 import com.investbuddy.App
+import com.investbuddy.common.data.AppSharedPreferences
+import com.investbuddy.common.data.SharedPrefsKeys
 import com.investbuddy.features.exchange.data.mapper.CryptoDataMapper
 import com.investbuddy.features.exchange.data.mapper.CurrencyDataMapper
 import com.investbuddy.features.exchange.data.mapper.StockDataMapper
@@ -13,7 +15,8 @@ import javax.inject.Inject
 
 
 class ExchangeRepository @Inject constructor(
-    private val exchangeApi: ExchangeApi
+    private val exchangeApi: ExchangeApi,
+    private val appSharedPreferences: AppSharedPreferences,
 ) {
 
     suspend fun getCrypto(): List<ExchangeItem> {
@@ -41,7 +44,7 @@ class ExchangeRepository @Inject constructor(
     suspend fun getStock(mult: Float): List<ExchangeItem> {
         val stockData = exchangeApi.getStock2()
 
-        return StockDataMapper.mapFromDataToDomain(stockData, mult)
+        return StockDataMapper.mapFromDataToDomain(stockData.body, mult)
     }
 
     suspend fun getCurrency(): List<ExchangeItem> {
@@ -71,6 +74,7 @@ class ExchangeRepository @Inject constructor(
         val dateFrom = dateFormat.format(cal.time)
 
         val ratesData = exchangeApi.getCurrencyRates(
+            apiKey = appSharedPreferences.getString(SharedPrefsKeys.KEY_CURRENCY) ?: "cur_live_0GBNWoa4U6fqc6Cv5xf9AC3tFRwDeOHfAwG73eMO",
             dateFrom = dateFrom,
             dateTo = dateTo,
             baseCurrency = currency,

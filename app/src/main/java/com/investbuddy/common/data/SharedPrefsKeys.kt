@@ -16,6 +16,11 @@ enum class SharedPrefsKeys {
     TRADE,
     BOT_MODEL,
 
+    // KEYS
+    KEY_RAPID_API,
+    KEY_API,
+    KEY_CURRENCY,
+
     START_PROMPT,
 
     APP_INSTANCE_ID,

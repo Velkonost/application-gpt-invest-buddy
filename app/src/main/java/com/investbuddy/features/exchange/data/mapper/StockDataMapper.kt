@@ -1,6 +1,7 @@
 package com.investbuddy.features.exchange.data.mapper
 
 import com.investbuddy.features.exchange.data.network.Stock2Data
+import com.investbuddy.features.exchange.data.network.Stock2DataItem
 import com.investbuddy.features.exchange.data.network.StockResponse
 import com.investbuddy.features.exchange.domain.model.ExchangeItem
 
@@ -16,7 +17,7 @@ object StockDataMapper {
         }
     }
 
-    fun mapFromDataToDomain(stock2Data: List<Stock2Data>, mult: Float): List<ExchangeItem> {
+    fun mapFromDataToDomain(stock2Data: List<Stock2DataItem>, mult: Float): List<ExchangeItem> {
         return stock2Data.map {
             ExchangeItem(
                 name = it.symbol,

@@ -33,7 +33,7 @@ interface ExchangeApi {
     suspend fun getStock2(
         @Url url: String = "https://mboum-finance.p.rapidapi.com/qu/quote",
         @Query("symbol") symbols: String = "TSLA,AMZN,AAPL,SOFI,AMD,IBM,PLTR,DIS,RIOT,GRAB",
-    ): List<Stock2Data>
+    ): Stock2Data
 
     @GET
     suspend fun getCurrency(

@@ -38,7 +38,7 @@ object NetworkModule {
         appSharedPreferences: AppSharedPreferences,
     ): Retrofit {
         val logInter = HttpLoggingInterceptor()
-        logInter.setLevel(HttpLoggingInterceptor.Level.NONE);
+        logInter.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         val okhttp = OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT_S, TimeUnit.SECONDS)
@@ -46,9 +46,11 @@ object NetworkModule {
             .addInterceptor(logInter)
             .addInterceptor(errorInterceptor)
             .addInterceptor {
+                val apiKey = appSharedPreferences.getString(SharedPrefsKeys.KEY_API) ?: "kikwdEE24a93DtnaSLhkL18bUs9GSQqa3nvL2ipY"
+                val rapidApiKey = appSharedPreferences.getString(SharedPrefsKeys.KEY_RAPID_API) ?: "1ccb0abd8emsh3e8cc5aff311e83p1dfe6fjsneccb08871870"
                 val newRequest = it.request().newBuilder()
-                    .addHeader("x-api-key", "kikwdEE24a93DtnaSLhkL18bUs9GSQqa3nvL2ipY")
-                    .addHeader("X-RapidAPI-Key", "1ccb0abd8emsh3e8cc5aff311e83p1dfe6fjsneccb08871870")
+                    .addHeader("x-api-key", apiKey)
+                    .addHeader("X-RapidAPI-Key", rapidApiKey)
                     .addHeader("X-RapidAPI-Host", "mboum-finance.p.rapidapi.com")
                     .build()
 
@@ -75,7 +77,7 @@ object NetworkModule {
         appSharedPreferences: AppSharedPreferences,
     ): Retrofit {
         val logInter = HttpLoggingInterceptor()
-        logInter.setLevel(HttpLoggingInterceptor.Level.NONE)
+        logInter.setLevel(HttpLoggingInterceptor.Level.BODY)
 
         val okhttp = OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT_S, TimeUnit.SECONDS)
@@ -105,7 +107,7 @@ object NetworkModule {
         appSharedPreferences: AppSharedPreferences,
     ): Retrofit {
         val logInter = HttpLoggingInterceptor()
-        logInter.setLevel(HttpLoggingInterceptor.Level.NONE);
+        logInter.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         val okhttp = OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT_CHAT_S, TimeUnit.SECONDS)
